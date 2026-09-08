@@ -520,6 +520,8 @@ const Faq = () => {
               <div className="faq-shortcut-content">
                 <h4 className="faq-shortcut-title">Recomendaciones de Embalaje</h4>
                 <p className="faq-shortcut-desc">Aprende a embalar como un experto para proteger tu envío.</p>
+              </div>
+              <div className="faq-shortcut-action">
                 <button className="faq-shortcut-btn">Más detalles</button>
               </div>
             </div>
@@ -531,6 +533,8 @@ const Faq = () => {
               <div className="faq-shortcut-content">
                 <h4 className="faq-shortcut-title">Carga Prohibida</h4>
                 <p className="faq-shortcut-desc">¡Descubre qué artículos no puedes enviar!</p>
+              </div>
+              <div className="faq-shortcut-action">
                 <button className="faq-shortcut-btn">Más detalles</button>
               </div>
             </div>
@@ -542,6 +546,8 @@ const Faq = () => {
               <div className="faq-shortcut-content">
                 <h4 className="faq-shortcut-title">Carga Sobredimensionada</h4>
                 <p className="faq-shortcut-desc">Como asegurar carga sobredimensionada.</p>
+              </div>
+              <div className="faq-shortcut-action">
                 <button className="faq-shortcut-btn">Más detalles</button>
               </div>
             </div>
@@ -553,6 +559,8 @@ const Faq = () => {
               <div className="faq-shortcut-content">
                 <h4 className="faq-shortcut-title">Hablemos</h4>
                 <p className="faq-shortcut-desc">Contáctate con nosotros.</p>
+              </div>
+              <div className="faq-shortcut-action">
                 <button className="faq-shortcut-btn">Más detalles</button>
               </div>
             </div>
@@ -564,6 +572,8 @@ const Faq = () => {
               <div className="faq-shortcut-content">
                 <h4 className="faq-shortcut-title">Crear Reclamo</h4>
                 <p className="faq-shortcut-desc">Gestiona tus reclamos de manera rápida y efectiva.</p>
+              </div>
+              <div className="faq-shortcut-action">
                 <button className="faq-shortcut-btn">Más detalles</button>
               </div>
             </div>
