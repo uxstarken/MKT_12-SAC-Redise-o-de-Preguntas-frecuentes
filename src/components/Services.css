@@ -1,0 +1,78 @@
+.services-section {
+  padding: 80px 24px;
+}
+
+.section-header {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.section-header h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: 8px;
+  color: var(--color-black);
+}
+
+.section-header p {
+  color: var(--color-gray-text);
+  font-size: var(--text-lg);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  border: 1px solid var(--color-green-border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  background-color: var(--color-white);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.service-card:hover {
+  background-color: var(--color-green-light);
+  border-color: var(--color-green-light);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.service-content h3 {
+  font-size: var(--text-lg);
+  margin: 16px 0 8px;
+}
+
+.service-content p {
+  color: var(--color-gray-text);
+  font-size: var(--text-sm);
+}
+
+.service-hover-action {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--transition-normal);
+  margin-top: 16px;
+}
+
+.service-card:hover .service-hover-action {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.action-link {
+  color: var(--color-green-primary);
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+.action-link:hover {
+  text-decoration: underline;
+}

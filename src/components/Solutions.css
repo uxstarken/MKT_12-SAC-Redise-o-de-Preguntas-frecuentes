@@ -1,0 +1,108 @@
+.solutions-section {
+  background-color: var(--color-gray-light);
+  padding: 80px 24px;
+}
+
+.pill-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 48px;
+}
+
+.pill-tabs {
+  display: inline-flex;
+  background-color: var(--color-white);
+  padding: 8px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.pill-tab {
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-weight: 500;
+  color: var(--color-gray-text);
+  background: transparent;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+}
+
+.pill-tab.active {
+  background-color: var(--color-green-light);
+  color: var(--color-green-primary);
+}
+
+.pill-tab:hover:not(.active) {
+  color: var(--color-black);
+}
+
+.solutions-content {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  background-color: var(--color-white);
+  padding: 48px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.solutions-text {
+  flex: 1;
+}
+
+.solutions-text h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: 24px;
+  color: var(--color-black);
+}
+
+.benefits-list {
+  margin-bottom: 32px;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: var(--text-base);
+  color: var(--color-gray-text);
+}
+
+.solutions-image-placeholder {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-mockup {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background-color: var(--color-green-light);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-green-primary);
+  font-weight: 500;
+  border: 1px dashed var(--color-green-border);
+}
+
+.fade-in-up {
+  animation: fadeInUp var(--transition-normal);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .solutions-content {
+    flex-direction: column;
+    padding: 24px;
+  }
+}
