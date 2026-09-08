@@ -367,7 +367,10 @@ const Faq = () => {
       <div className="condiciones-main-container" style={{ paddingBottom: '80px', paddingTop: '16px' }}>
         
         {/* Intro Section and Search input */}
-        <div className="condiciones-page-intro" style={{ paddingTop: '16px', paddingBottom: '12px', marginBottom: '24px' }}>
+        <div className="condiciones-page-intro" style={{ paddingTop: '20px', paddingBottom: '12px', marginBottom: '24px' }}>
+          <h2 className="faq-page-main-title">
+            Preguntas Frecuentes
+          </h2>
           <p className="condiciones-intro-subtitle">
             Encuentra respuestas rápidas a tus consultas sobre envíos, seguimientos, tarifas y soluciones para pymes.
           </p>

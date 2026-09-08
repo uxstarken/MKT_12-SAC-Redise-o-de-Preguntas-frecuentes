@@ -47,6 +47,23 @@
   }
 }
 
+/* FAQ Page Main Title */
+.faq-page-main-title {
+  font-family: var(--font-title);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--starken-text-dark);
+  margin: 0;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+
+@media (max-width: 768px) {
+  .faq-page-main-title {
+    font-size: 22px;
+  }
+}
+
 /* Search Container */
 .faq-search-container {
   position: relative;
