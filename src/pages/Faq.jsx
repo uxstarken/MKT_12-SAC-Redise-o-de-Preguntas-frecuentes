@@ -16,7 +16,8 @@ import {
   MessageSquare, 
   Phone,
   ThumbsUp,
-  ThumbsDown
+  ThumbsDown,
+  ChevronRight
 } from 'lucide-react';
 import Footer from '../components/Footer';
 import HomeChatbot from '../components/HomeChatbot';
@@ -522,7 +523,10 @@ const Faq = () => {
                 <p className="faq-shortcut-desc">Aprende a embalar como un experto para proteger tu envío.</p>
               </div>
               <div className="faq-shortcut-action">
-                <button className="faq-shortcut-btn">Más detalles</button>
+                <a href="#recomendaciones" className="faq-shortcut-link">
+                  <span>Ver más detalles</span>
+                  <ChevronRight size={16} className="faq-shortcut-arrow" />
+                </a>
               </div>
             </div>
 
@@ -535,7 +539,10 @@ const Faq = () => {
                 <p className="faq-shortcut-desc">¡Descubre qué artículos no puedes enviar!</p>
               </div>
               <div className="faq-shortcut-action">
-                <button className="faq-shortcut-btn">Más detalles</button>
+                <a href="#carga-prohibida" className="faq-shortcut-link">
+                  <span>Ver más detalles</span>
+                  <ChevronRight size={16} className="faq-shortcut-arrow" />
+                </a>
               </div>
             </div>
 
@@ -548,7 +555,10 @@ const Faq = () => {
                 <p className="faq-shortcut-desc">Como asegurar carga sobredimensionada.</p>
               </div>
               <div className="faq-shortcut-action">
-                <button className="faq-shortcut-btn">Más detalles</button>
+                <a href="#carga-sobredimensionada" className="faq-shortcut-link">
+                  <span>Ver más detalles</span>
+                  <ChevronRight size={16} className="faq-shortcut-arrow" />
+                </a>
               </div>
             </div>
 
@@ -561,7 +571,10 @@ const Faq = () => {
                 <p className="faq-shortcut-desc">Contáctate con nosotros.</p>
               </div>
               <div className="faq-shortcut-action">
-                <button className="faq-shortcut-btn">Más detalles</button>
+                <a href="#hablemos" className="faq-shortcut-link">
+                  <span>Ver más detalles</span>
+                  <ChevronRight size={16} className="faq-shortcut-arrow" />
+                </a>
               </div>
             </div>
 
@@ -574,7 +587,10 @@ const Faq = () => {
                 <p className="faq-shortcut-desc">Gestiona tus reclamos de manera rápida y efectiva.</p>
               </div>
               <div className="faq-shortcut-action">
-                <button className="faq-shortcut-btn">Más detalles</button>
+                <a href="#crear-reclamo" className="faq-shortcut-link">
+                  <span>Ver más detalles</span>
+                  <ChevronRight size={16} className="faq-shortcut-arrow" />
+                </a>
               </div>
             </div>
           </div>

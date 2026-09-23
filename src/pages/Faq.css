@@ -164,20 +164,20 @@
 .faq-category-card:hover {
   transform: translateX(4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
-  border-color: #029E47;
+  border-color: #FED7AA;
 }
 
 .faq-category-card.active {
-  background: #e6f6ec;
-  border-color: #029E47;
-  box-shadow: 0 8px 16px rgba(2, 158, 71, 0.08);
+  background: #ffffff;
+  border: 2px solid var(--starken-orange, #FF8400);
+  box-shadow: 0 6px 18px rgba(255, 132, 0, 0.12);
 }
 
 .faq-category-icon-wrapper {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: #f3f4f6;
+  border-radius: 10px;
+  background: #f1f5f9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -187,13 +187,13 @@
 }
 
 .faq-category-card:hover .faq-category-icon-wrapper {
-  background: #e6f6ec;
-  color: #029E47;
+  background: #FFF4EB;
+  color: var(--starken-orange, #FF8400);
 }
 
 .faq-category-card.active .faq-category-icon-wrapper {
-  background: #029E47;
-  color: white;
+  background: #FFF4EB;
+  color: var(--starken-orange, #FF8400);
 }
 
 .faq-category-info {
@@ -207,25 +207,29 @@
 .faq-category-name {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #374151;
+  color: #1E293B;
+  transition: color 0.2s ease;
 }
 
 .faq-category-card.active .faq-category-name {
-  color: #027a37;
+  color: #0F2042;
+  font-weight: 700;
 }
 
 .faq-category-count {
   font-size: 0.75rem;
-  color: #9ca3af;
-  background: #f3f4f6;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-weight: 500;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .faq-category-card.active .faq-category-count {
-  background: rgba(2, 158, 71, 0.15);
-  color: #027a37;
+  background: #FFF4EB;
+  color: #D95A00;
+  font-weight: 700;
 }
 
 /* Accordion Section */
@@ -597,7 +601,7 @@
 .faq-shortcut-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-  border-color: var(--starken-orange);
+  border-color: var(--starken-green);
 }
 
 .faq-shortcut-img-wrapper {
@@ -638,7 +642,7 @@
 .faq-shortcut-desc {
   font-size: 0.82rem;
   color: #6b7280;
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   line-height: 1.45;
   flex-grow: 1;
 }
@@ -646,29 +650,44 @@
 .faq-shortcut-action {
   width: 100%;
   margin-top: auto;
-}
-
-.faq-shortcut-btn {
-  background: var(--starken-orange);
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  border-radius: 7px;
-  cursor: pointer;
-  width: 100%;
-  transition: all 0.2s ease;
-  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
 }
 
-.faq-shortcut-btn:hover {
-  background: var(--starken-orange-dark);
-  box-shadow: 0 4px 12px rgba(255, 132, 0, 0.25);
+.faq-shortcut-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--starken-green);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.faq-shortcut-arrow {
+  color: var(--starken-green);
+  transition: transform 0.2s ease, color 0.2s ease;
+  stroke-width: 2.5;
+  flex-shrink: 0;
+}
+
+.faq-shortcut-link:hover,
+.faq-shortcut-card:hover .faq-shortcut-link {
+  color: var(--starken-green-dark);
+}
+
+.faq-shortcut-link:hover .faq-shortcut-arrow,
+.faq-shortcut-card:hover .faq-shortcut-arrow {
+  transform: translateX(4px);
+  color: var(--starken-green-dark);
 }
 
 /* Mobile Responsiveness */
@@ -701,11 +720,11 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 16px;
-    border-radius: 30px;
+    padding: 8px 14px;
+    border-radius: 12px;
     background: #ffffff;
-    border: 1.5px solid #029E47;
-    box-shadow: 0 2px 8px rgba(2, 158, 71, 0.08);
+    border: 1.5px solid #e5e7eb;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
     cursor: pointer;
     white-space: nowrap;
     width: auto;
@@ -714,24 +733,24 @@
   
   .faq-category-card:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(2, 158, 71, 0.15);
+    border-color: #FED7AA;
   }
 
   .faq-category-card.active {
-    background: #FFF7ED;
-    border-color: var(--starken-orange, #FF8400);
-    box-shadow: 0 4px 12px rgba(255, 132, 0, 0.15);
+    background: #ffffff;
+    border: 2px solid var(--starken-orange, #FF8400);
+    box-shadow: 0 4px 12px rgba(255, 132, 0, 0.12);
   }
 
   .faq-category-icon-wrapper {
     width: 28px;
     height: 28px;
-    border-radius: 50%;
-    background: #e6f6ec;
+    border-radius: 8px;
+    background: #f1f5f9;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #029E47;
+    color: #64748b;
     flex-shrink: 0;
     transition: all 0.2s ease;
   }
@@ -742,8 +761,8 @@
   }
 
   .faq-category-card.active .faq-category-icon-wrapper {
-    background: var(--starken-orange, #FF8400);
-    color: #ffffff;
+    background: #FFF4EB;
+    color: var(--starken-orange, #FF8400);
   }
 
   .faq-category-info {
@@ -755,29 +774,29 @@
 
   .faq-category-name {
     font-size: 0.88rem;
-    font-weight: 700;
-    color: #029E47;
+    font-weight: 600;
+    color: #1E293B;
     white-space: nowrap;
     transition: color 0.2s ease;
   }
 
   .faq-category-card.active .faq-category-name {
-    color: #D95A00;
+    color: #0F2042;
     font-weight: 700;
   }
 
   .faq-category-count {
     font-size: 0.72rem;
-    color: #029E47;
-    background: #e6f6ec;
+    color: #64748b;
+    background: #f1f5f9;
     padding: 2px 7px;
-    border-radius: 10px;
-    font-weight: 700;
+    border-radius: 8px;
+    font-weight: 600;
     transition: all 0.2s ease;
   }
 
   .faq-category-card.active .faq-category-count {
-    background: rgba(255, 132, 0, 0.18);
+    background: #FFF4EB;
     color: #D95A00;
     font-weight: 700;
   }
@@ -874,7 +893,7 @@
     word-break: break-word;
   }
 
-  /* 3ra Columna: Botón Más Detalles (40%) */
+  /* 3ra Columna: Hipervínculo Más Detalles (40%) */
   .faq-shortcut-action {
     flex: 0 0 40%;
     width: 40%;
@@ -882,24 +901,18 @@
     min-width: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     box-sizing: border-box;
     padding-left: 6px;
     margin-top: 0;
   }
 
-  .faq-shortcut-btn {
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    border-radius: 9999px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .faq-shortcut-link {
+    font-size: 0.82rem;
+    gap: 4px;
+    padding: 4px 0;
     white-space: nowrap;
-    box-sizing: border-box;
+    justify-content: flex-end;
   }
 
   .faq-accordion-section {
@@ -958,8 +971,13 @@
     font-size: 0.68rem;
   }
 
-  .faq-shortcut-btn {
+  .faq-shortcut-link {
     font-size: 0.74rem;
-    padding: 7px 6px;
+    gap: 2px;
+  }
+
+  .faq-shortcut-arrow {
+    width: 13px;
+    height: 13px;
   }
 }
