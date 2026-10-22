@@ -257,7 +257,7 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <Link to="#" className="btn-ingresar" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Ingresar</Link>
+              <Link to="#" className="btn-ingresar">Ingresar</Link>
             )}
           </div>
 

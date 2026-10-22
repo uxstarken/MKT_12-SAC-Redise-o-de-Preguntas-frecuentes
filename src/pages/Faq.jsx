@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Search, 
   MapPin, 
@@ -12,12 +12,8 @@ import {
   X, 
   FileText, 
   Boxes, 
-  Check, 
-  MessageSquare, 
-  Phone,
-  ThumbsUp,
-  ThumbsDown,
-  ChevronRight
+  ChevronRight,
+  ArrowRight
 } from 'lucide-react';
 import Footer from '../components/Footer';
 import HomeChatbot from '../components/HomeChatbot';
@@ -27,8 +23,6 @@ const Faq = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('envios-web');
   const [openFaqId, setOpenFaqId] = useState(null);
-  const [votes, setVotes] = useState({});
-  const [toast, setToast] = useState({ show: false, message: '' });
 
   // Categorías de FAQ
   const categories = [
@@ -307,37 +301,92 @@ const Faq = () => {
     }
   ];
 
+  // Normalizar texto para búsqueda insensible a acentos y mayúsculas
+  const normalizeText = (text) => 
+    text ? text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') : '';
+
+  // Comprobar si una pregunta o respuesta coincide con la búsqueda
+  const faqMatchesSearch = (faq, query) => {
+    if (!query || !query.trim()) return true;
+    const cleanQuery = query.trim();
+    const words = cleanQuery.split(/\s+/).filter(Boolean);
+    if (words.length === 0) return true;
+
+    const normQ = normalizeText(faq.question);
+    const normA = normalizeText(faq.answer);
+    const combined = `${normQ} ${normA}`;
+
+    return words.every(word => combined.includes(normalizeText(word)));
+  };
+
+  const hasSearch = searchQuery.trim().length > 0;
+
+  // Contar coincidencias por categoría
+  const getCategoryMatchCount = (categoryId) => {
+    if (!hasSearch) {
+      return faqData.filter(faq => faq.category === categoryId).length;
+    }
+    return faqData.filter(faq => faq.category === categoryId && faqMatchesSearch(faq, searchQuery)).length;
+  };
+
+  // Resaltar coincidencias en negrita
+  const highlightMatches = (text, query) => {
+    if (!text || !query || !query.trim()) return text;
+    
+    const cleanQuery = query.trim();
+    const words = cleanQuery.split(/\s+/).filter(Boolean);
+    if (words.length === 0) return text;
+
+    const accentMap = {
+      'a': '[aáàäâã]',
+      'e': '[eéèëê]',
+      'i': '[iíìïî]',
+      'o': '[oóòöôõ]',
+      'u': '[uúùüû]',
+      'n': '[nñ]',
+      'c': '[cç]'
+    };
+
+    const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+    const wordPatterns = words.map(w => {
+      const norm = normalizeText(w);
+      let p = '';
+      for (const char of norm) {
+        p += accentMap[char] || escapeRegExp(char);
+      }
+      return p;
+    });
+
+    try {
+      const splitRegex = new RegExp(`(${wordPatterns.join('|')})`, 'gi');
+      const matchRegex = new RegExp(`^(${wordPatterns.join('|')})$`, 'i');
+      const parts = text.split(splitRegex);
+      
+      return parts.map((part, index) => {
+        if (matchRegex.test(part)) {
+          return (
+            <strong key={index} className="faq-highlight">
+              {part}
+            </strong>
+          );
+        }
+        return part;
+      });
+    } catch (e) {
+      return text;
+    }
+  };
+
   // Filtrar preguntas según categoría activa y búsqueda
   const filteredFaqs = faqData.filter(faq => {
     const matchesCategory = faq.category === activeCategory;
-    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          faq.answer.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = faqMatchesSearch(faq, searchQuery);
     return matchesCategory && matchesSearch;
   });
 
-  // Mostrar Toast
-  const showToastMessage = (message) => {
-    setToast({ show: true, message });
-  };
-
-  useEffect(() => {
-    if (toast.show) {
-      const timer = setTimeout(() => {
-        setToast({ show: false, message: '' });
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [toast.show]);
-
-  // Manejar Votación
-  const handleVote = (faqId, type) => {
-    if (votes[faqId]) return; // Evitar doble voto
-    setVotes(prev => ({
-      ...prev,
-      [faqId]: type
-    }));
-    showToastMessage('¡Gracias! Tu feedback nos ayuda a mejorar.');
-  };
+  // Categorías con coincidencias para sugerencias
+  const categoriesWithMatches = categories.filter(cat => getCategoryMatchCount(cat.id) > 0);
 
   // Manejar cambio de categoría y scroll en móvil
   const handleCategoryClick = (categoryId, event) => {
@@ -365,22 +414,22 @@ const Faq = () => {
       </section>
 
       {/* Main Content Area in 1200px max-width container */}
-      <div className="condiciones-main-container" style={{ paddingBottom: '80px', paddingTop: '16px' }}>
+      <div className="condiciones-main-container" style={{ paddingBottom: '120px', paddingTop: '16px' }}>
         
         {/* Intro Section and Search input */}
-        <div className="condiciones-page-intro" style={{ paddingTop: '20px', paddingBottom: '12px', marginBottom: '24px' }}>
+        <div className="faq-page-intro">
           <h2 className="faq-page-main-title">
             Preguntas Frecuentes
           </h2>
           <p className="condiciones-intro-subtitle">
-            Encuentra respuestas rápidas a tus consultas sobre envíos, seguimientos, tarifas y soluciones para pymes.
+            Puedes buscar en la categoría que más se acerque a tu consulta.
           </p>
           
           {/* Search Bar */}
           <div className="faq-search-container" style={{ width: '100%', maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
             <input 
               type="text" 
-              placeholder="Busca por palabras clave (ej. seguimiento, tarifas, pyme)..." 
+              placeholder="Buscar por palabra clave como por ejemplo: envío" 
               className="faq-search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -391,7 +440,7 @@ const Faq = () => {
                 border: '1px solid var(--starken-border)',
                 borderRadius: '30px',
                 backgroundColor: 'var(--starken-white)',
-                color: 'var(--starken-text-dark)',
+                color: '#374151',
                 boxShadow: '0 4px 10px rgba(0, 0, 0, 0.05)',
                 outline: 'none',
                 transition: 'all 0.3s ease',
@@ -418,20 +467,26 @@ const Faq = () => {
           <aside className="faq-sidebar">
             {categories.map((category) => {
               const IconComponent = category.icon;
-              const count = faqData.filter(faq => faq.category === category.id).length;
+              const totalCount = faqData.filter(faq => faq.category === category.id).length;
+              const matchCount = getCategoryMatchCount(category.id);
+              const hasMatches = hasSearch && matchCount > 0;
+              const noMatches = hasSearch && matchCount === 0;
 
               return (
                 <div 
                   key={category.id} 
-                  className={`faq-category-card ${activeCategory === category.id ? 'active' : ''}`}
+                  className={`faq-category-card ${activeCategory === category.id ? 'active' : ''} ${hasMatches ? 'has-matches' : ''} ${noMatches ? 'no-matches' : ''}`}
                   onClick={(e) => handleCategoryClick(category.id, e)}
+                  title={hasMatches ? `${matchCount} coincidencias encontradas` : undefined}
                 >
                   <div className="faq-category-icon-wrapper">
                     <IconComponent size={20} />
                   </div>
                   <div className="faq-category-info">
                     <span className="faq-category-name">{category.name}</span>
-                    <span className="faq-category-count">{count}</span>
+                    <span className={`faq-category-count ${hasMatches ? 'badge-match' : ''}`}>
+                      {hasSearch ? matchCount : totalCount}
+                    </span>
                   </div>
                 </div>
               );
@@ -445,7 +500,7 @@ const Faq = () => {
                 {categories.find(c => c.id === activeCategory)?.name || 'Preguntas'}
               </h3>
               <span className="faq-category-count">
-                {filteredFaqs.length} {filteredFaqs.length === 1 ? 'pregunta' : 'preguntas'} encontradas
+                {filteredFaqs.length} {filteredFaqs.length === 1 ? 'pregunta' : 'preguntas'} {hasSearch ? 'con coincidencias' : 'encontradas'}
               </span>
             </div>
 
@@ -453,7 +508,6 @@ const Faq = () => {
               <div className="faq-list">
                 {filteredFaqs.map((faq) => {
                   const isOpen = openFaqId === faq.id;
-                  const hasVoted = votes[faq.id];
 
                   return (
                     <div 
@@ -465,7 +519,7 @@ const Faq = () => {
                         onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
                         aria-expanded={isOpen}
                       >
-                        <span>{faq.question}</span>
+                        <span>{highlightMatches(faq.question, searchQuery)}</span>
                         <ChevronDown className="faq-chevron" size={20} />
                       </button>
                       
@@ -474,27 +528,9 @@ const Faq = () => {
                         style={{ maxHeight: isOpen ? '1000px' : '0' }}
                       >
                         <div className="faq-answer-content">
-                          <p style={{ margin: '0 0 16px 0', whiteSpace: 'pre-line' }}>{faq.answer}</p>
-                          
-                          <div className="faq-feedback">
-                            <span className="faq-feedback-label">¿Te resultó útil esta respuesta?</span>
-                            <button 
-                              className={`faq-feedback-btn yes ${hasVoted === 'yes' ? 'voted-yes' : ''}`}
-                              onClick={() => handleVote(faq.id, 'yes')}
-                              disabled={!!hasVoted}
-                            >
-                              <ThumbsUp size={14} />
-                              <span>Sí</span>
-                            </button>
-                            <button 
-                              className={`faq-feedback-btn no ${hasVoted === 'no' ? 'voted-no' : ''}`}
-                              onClick={() => handleVote(faq.id, 'no')}
-                              disabled={!!hasVoted}
-                            >
-                              <ThumbsDown size={14} />
-                              <span>No</span>
-                            </button>
-                          </div>
+                          <p style={{ margin: 0, whiteSpace: 'pre-line' }}>
+                            {highlightMatches(faq.answer, searchQuery)}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -504,8 +540,34 @@ const Faq = () => {
             ) : (
               <div className="faq-empty-state">
                 <HelpCircle className="faq-empty-icon" size={48} />
-                <h4 className="faq-empty-title">No encontramos resultados para tu búsqueda</h4>
-                <p className="faq-empty-desc">Prueba utilizando otras palabras o explora por categorías.</p>
+                <h4 className="faq-empty-title">
+                  {hasSearch 
+                    ? `No hay coincidencias en "${categories.find(c => c.id === activeCategory)?.name}"`
+                    : 'No encontramos resultados para tu búsqueda'}
+                </h4>
+                <div className="faq-empty-desc">
+                  {hasSearch && categoriesWithMatches.length > 0 ? (
+                    <div className="faq-empty-matches-prompt">
+                      <p style={{ margin: '0 0 12px 0' }}>
+                        Se encontraron preguntas con "{searchQuery}" en otras secciones. Haz clic para verlas:
+                      </p>
+                      <div className="faq-empty-cat-links">
+                        {categoriesWithMatches.map((cat) => (
+                          <button
+                            key={cat.id}
+                            type="button"
+                            className="faq-empty-cat-btn"
+                            onClick={(e) => handleCategoryClick(cat.id, e)}
+                          >
+                            {cat.name} ({getCategoryMatchCount(cat.id)})
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <p style={{ margin: 0 }}>Prueba utilizando otras palabras o explora por categorías.</p>
+                  )}
+                </div>
               </div>
             )}
           </section>
@@ -564,22 +626,6 @@ const Faq = () => {
 
             <div className="faq-shortcut-card">
               <div className="faq-shortcut-img-wrapper">
-                <img src="/hablemos.jpg" alt="Hablemos" />
-              </div>
-              <div className="faq-shortcut-content">
-                <h4 className="faq-shortcut-title">Hablemos</h4>
-                <p className="faq-shortcut-desc">Contáctate con nosotros.</p>
-              </div>
-              <div className="faq-shortcut-action">
-                <a href="#hablemos" className="faq-shortcut-link">
-                  <span>Ver más detalles</span>
-                  <ChevronRight size={16} className="faq-shortcut-arrow" />
-                </a>
-              </div>
-            </div>
-
-            <div className="faq-shortcut-card">
-              <div className="faq-shortcut-img-wrapper">
                 <img src="/crear_reclamo.jpg" alt="Crear Reclamo" />
               </div>
               <div className="faq-shortcut-content">
@@ -598,37 +644,22 @@ const Faq = () => {
 
         {/* Support Section */}
         <section className="faq-support-section">
-          <div className="faq-support-info">
-            <span className="faq-support-tag">¿Aún tienes dudas?</span>
-            <h2 className="faq-support-title">Ponte en contacto con nosotros</h2>
-            <p className="faq-support-desc">
-              Si no encontraste respuesta a tu consulta, nuestro equipo del Servicio de Atención al Cliente (SAC) está listo para ayudarte a través de cualquiera de nuestros canales.
-            </p>
-            
-            <div className="faq-contact-channels">
-              <a href="tel:6002000700" className="faq-channel">
-                <div className="faq-channel-icon">
-                  <Phone size={22} />
-                </div>
-                <div className="faq-channel-details">
-                  <h4>Call Center SAC</h4>
-                  <p>600 2000 700 / Lun - Vie 08:30 a 18:30</p>
-                </div>
-              </a>
-
+          <div className="faq-support-content">
+            <div className="faq-support-text">
+              <h2 className="faq-support-title">Ponte en contacto con nosotros</h2>
+              <p className="faq-support-desc">
+                Si no encontraste respuesta a tu consulta, escribenos a travez del siguiente enlace y te ayudaremos.
+              </p>
+            </div>
+            <div className="faq-support-action">
               <a 
-                href="https://api.whatsapp.com/send?phone=56984552410" 
+                href="https://www.starken.cl/hablemos" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="faq-channel"
+                className="faq-support-btn"
               >
-                <div className="faq-channel-icon">
-                  <MessageSquare size={22} style={{ color: '#029E47' }} />
-                </div>
-                <div className="faq-channel-details">
-                  <h4>Soporte por WhatsApp</h4>
-                  <p>+56 9 8455 2410 / Atención automatizada y agentes</p>
-                </div>
+                <span>Contactar</span>
+                <ArrowRight size={16} />
               </a>
             </div>
           </div>
@@ -637,14 +668,6 @@ const Faq = () => {
 
       <HomeChatbot />
       <Footer />
-
-      {/* Toast Notification */}
-      {toast.show && (
-        <div className="faq-toast">
-          <Check className="faq-toast-icon" size={18} />
-          <span>{toast.message}</span>
-        </div>
-      )}
     </div>
   );
 };
