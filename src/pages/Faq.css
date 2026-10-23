@@ -108,14 +108,19 @@
   width: 100%;
   padding: 16px 20px 16px 54px;
   font-size: 1.05rem;
-  border: none;
+  border: 1px solid var(--starken-border);
   border-radius: 30px;
-  background: white;
+  background: var(--starken-white, #ffffff);
   color: #374151;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
   outline: none;
   font-family: inherit;
+}
+
+.faq-search-input::placeholder {
+  color: #9ca3af;
+  font-size: inherit;
 }
 
 .faq-search-input:focus {
@@ -926,6 +931,19 @@
 }
 
 @media (max-width: 768px) {
+  .faq-search-input {
+    font-size: 14px;
+    padding: 13px 18px 13px 46px;
+  }
+
+  .faq-search-input::placeholder {
+    font-size: 14px;
+  }
+
+  .faq-search-icon {
+    left: 16px;
+  }
+
   .faq-shortcuts-grid {
     grid-template-columns: 1fr;
     gap: 12px;

@@ -433,19 +433,6 @@ const Faq = () => {
               className="faq-search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '16px 20px 16px 54px',
-                fontSize: '1.05rem',
-                border: '1px solid var(--starken-border)',
-                borderRadius: '30px',
-                backgroundColor: 'var(--starken-white)',
-                color: '#374151',
-                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.05)',
-                outline: 'none',
-                transition: 'all 0.3s ease',
-                fontFamily: 'inherit'
-              }}
             />
             <Search className="faq-search-icon" size={22} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: '#9ca3af' }} />
             {searchQuery && (
