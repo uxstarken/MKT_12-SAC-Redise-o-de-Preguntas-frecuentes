@@ -1006,7 +1006,7 @@
 
   .faq-shortcut-title {
     font-family: 'DIN', 'DIN 2014', var(--font-title);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 700;
     color: #303030;
     margin: 0 0 2px 0;
@@ -1019,7 +1019,7 @@
 
   .faq-shortcut-desc {
     font-family: 'Nunito', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: #374151;
     margin: 0;
     line-height: 1.25;
@@ -1137,15 +1137,15 @@
   }
 
   .faq-shortcut-title {
-    font-size: 0.78rem;
+    font-size: 14px;
   }
 
   .faq-shortcut-desc {
-    font-size: 0.68rem;
+    font-size: 13px;
   }
 
   .faq-shortcut-link {
-    font-size: 0.74rem;
+    font-size: 14px;
     gap: 2px;
   }
 
