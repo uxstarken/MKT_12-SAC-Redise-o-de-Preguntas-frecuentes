@@ -178,7 +178,7 @@
   flex-direction: column;
   gap: 12px;
   position: sticky;
-  top: 100px; /* Sticky below navbar */
+  top: 100px; /* Sticky below navbar en desktop */
 }
 
 /* Category Card - Horizontal design */
@@ -449,11 +449,28 @@
 
 .faq-answer-content p,
 .faq-answer-content li,
-.faq-answer-content span,
-.faq-answer-content a {
+.faq-answer-content span {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   color: #374151;
+}
+
+.faq-answer-content a,
+.faq-answer-link {
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+  color: #029E47;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 700;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  cursor: pointer;
+}
+
+.faq-answer-content a:hover,
+.faq-answer-link:hover {
+  color: #016E31;
+  text-decoration-color: #016E31;
 }
 
 /* Bold keyword highlighting in questions & answers */
@@ -787,11 +804,33 @@
   color: var(--starken-green-dark);
 }
 
+/* Global dragging state for FAQ horizontal category list */
+body.is-faq-dragging {
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  cursor: grabbing !important;
+}
+
+body.is-faq-dragging * {
+  cursor: grabbing !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 968px) {
   .faq-content-layout {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     gap: 20px;
+  }
+
+  .faq-sidebar-wrapper,
+  .faq-sidebar-arrow {
+    display: none !important;
   }
 
   .faq-sidebar {
@@ -799,17 +838,43 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow-x: auto;
-    overflow-y: hidden;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
     gap: 10px;
-    padding: 6px 16px 12px 16px;
-    margin: 0 -16px;
-    -webkit-overflow-scrolling: touch;
+    padding: 6px 2px 14px 2px;
+    margin: 0;
     scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    touch-action: auto !important;
   }
 
   .faq-sidebar::-webkit-scrollbar {
     display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .faq-sidebar.is-dragging {
+    cursor: grabbing !important;
+    scroll-behavior: auto !important;
+  }
+
+  .faq-sidebar.is-dragging * {
+    cursor: grabbing !important;
+    pointer-events: none !important;
+    user-select: none !important;
+  }
+
+  .faq-sidebar.is-dragging .faq-category-card {
+    cursor: grabbing !important;
+    pointer-events: none !important;
+    transition: none !important;
   }
 
   .faq-category-card {
@@ -822,7 +887,7 @@
     background: #ffffff;
     border: 1.5px solid #e5e7eb;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-    cursor: pointer;
+    cursor: grab;
     white-space: nowrap;
     width: auto;
     transition: all 0.25s ease;

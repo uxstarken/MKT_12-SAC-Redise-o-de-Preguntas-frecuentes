@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
   MapPin, 
@@ -23,6 +23,12 @@ const Faq = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('envios-web');
   const [openFaqId, setOpenFaqId] = useState(null);
+
+  const sidebarRef = useRef(null);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
+  const isDraggingActiveRef = useRef(false);
 
   // Categorías de FAQ
   const categories = [
@@ -59,7 +65,7 @@ const Faq = () => {
       id: 'web-4',
       category: 'envios-web',
       question: '¿Qué pasa si necesito modificar mi envío después de crearlo online?',
-      answer: 'Una vez que el envío ha sido creado y pagado (si aplica), podrás realizar cambios a través del seguimiento web con el servicio de Flex Delivery, también puedes contactar a nuestro servicio de atención al cliente para evaluar posible modificaciones.ndamos revisar nuestras políticas de envío en Condiciones Generales de Servicio para conocer los límites exactos.'
+      answer: 'Una vez que el envío ha sido creado y pagado (si aplica), puedes contactar a nuestro servicio de atención al cliente para evaluar posibles modificaciones.\nTe recomendamos revisar nuestras [Condiciones Generales de Servicio](https://starken.cl/condiciones) para conocer los límites exactos.'
     },
     {
       id: 'web-5',
@@ -95,7 +101,7 @@ const Faq = () => {
       id: 'web-10',
       category: 'envios-web',
       question: '¿Hay restricciones de tamaño o peso para los envíos online?',
-      answer: 'Sí, existen restricciones de tamaño y peso para los envíos. Si las dimensiones de tu envío exceden el máximo permitido en starken.cl/sucursales donde encontrará los puntos de venta disponibles para recibir tu carga. Te recomendamos revisar nuestras políticas de envío en Condiciones Generales de Servicios para conocer los límites exactos.'
+      answer: 'Sí, existen restricciones de tamaño y peso para los envíos. Si las dimensiones de tu envío exceden el máximo permitido en starken.cl/sucursales donde encontrará los puntos de venta disponibles para recibir tu carga. Te recomendamos revisar nuestras políticas de envío en [Condiciones Generales de Servicios](https://starken.cl/condiciones) para conocer los límites exactos.'
     },
 
     // 2. Preguntas generales (11 preguntas exactas)
@@ -103,7 +109,7 @@ const Faq = () => {
       id: 'gen-1',
       category: 'preguntas-generales',
       question: '¿Qué artículos están prohibidos de ser enviados?',
-      answer: 'Por regulaciones de seguridad y políticas de la empresa, existen ciertos artículos que están prohibidos de ser enviados. Puedes consultar la lista completa de artículos prohibidos en Carga prohibida.'
+      answer: 'Por regulaciones de seguridad y políticas de la empresa, existen ciertos artículos que están prohibidos de ser enviados. Puedes consultar la lista completa de artículos prohibidos en [Carga prohibida](https://starken.cl/carga-prohibida).'
     },
     {
       id: 'gen-2',
@@ -115,7 +121,7 @@ const Faq = () => {
       id: 'gen-3',
       category: 'preguntas-generales',
       question: '¿El embalaje de mi envío debe cumplir algún requisito específico?',
-      answer: 'Sí, es importante que tu envío esté correctamente embalado para evitar daños durante el transporte. Te recomendamos revisar en Recomendaciones de Embalaje.'
+      answer: 'Sí, es importante que tu envío esté correctamente embalado para evitar daños durante el transporte. Te recomendamos revisar en [Recomendaciones de Embalaje](https://starken.cl/recomendaciones-embalaje).'
     },
     {
       id: 'gen-4',
@@ -133,13 +139,13 @@ const Faq = () => {
       id: 'gen-6',
       category: 'preguntas-generales',
       question: '¿Qué significa el estado "En tránsito"? ¿Y "Entregado"?',
-      answer: '"En tránsito" significa que tu envío está en camino a su destino y ha salido del punto de origen. "Entregado" significa que el envío ha sido entregado exitosamente. Otros estados pueden incluir "Listo para Retiro", "Incidencia en el envío", etc. Puedes consultar la descripción detallada de cada estado en nuestra sección de Seguimiento.'
+      answer: '"En tránsito" significa que tu envío está en camino a su destino y ha salido del punto de origen. "Entregado" significa que el envío ha sido entregado exitosamente. Otros estados pueden incluir "Listo para Retiro", "Incidencia en el envío", etc. Puedes consultar la descripción detallada de cada estado en nuestra sección de [Seguimiento](https://starken.cl/seguimiento).'
     },
     {
       id: 'gen-7',
       category: 'preguntas-generales',
       question: '¿Qué debo hacer si mi envío llega con daños?',
-      answer: 'Si tu envío llega con daños, te recomendamos tomar fotografías del envío dañado antes de abrirlo y del contenido dañado una vez abierto. Luego, debes realizar un reclamo a través de nuestro Centro de Ayuda Formulario e Reclamos adjuntando las fotografías como evidencia.'
+      answer: 'Si tu envío llega con daños, te recomendamos tomar fotografías del envío dañado antes de abrirlo y del contenido dañado una vez abierto. Luego, debes realizar un reclamo a través de nuestro Centro de Ayuda [Formulario e Reclamos](https://starken.cl/form-reclamo) adjuntando las fotografías como evidencia.'
     },
     {
       id: 'gen-8',
@@ -177,13 +183,13 @@ const Faq = () => {
       id: 'prob-2',
       category: 'problemas-envio',
       question: '¿Qué pasa si mi envío se pierde o se daña?',
-      answer: 'Si tu envío se pierde o se daña, debes realizar un reclamo a través de nuestro Centro de Ayuda, ahí encontraras el Formulario e Reclamos, donde te pediremos información detallada sobre el envío y los daños o la pérdida para poder ingresar la solicitud.'
+      answer: 'Si tu envío se pierde o se daña, debes realizar un reclamo a través de nuestro Centro de Ayuda, ahí encontraras el [Formulario e Reclamos](https://starken.cl/form-reclamo), donde te pediremos información detallada sobre el envío y los daños o la pérdida para poder ingresar la solicitud.'
     },
     {
       id: 'prob-3',
       category: 'problemas-envio',
       question: '¿Qué hago si tengo problemas al entregar mi envío en un punto de venta?',
-      answer: 'Al momento de recibir la carga, si existiera alguna incidencia te recomendamos contactar a nuestro personal del punto de venta para que te asistan, también puedes solicitar asistencia por nuestro canal de WhatsApp'
+      answer: 'Al momento de recibir la carga, si existiera alguna incidencia te recomendamos contactar a nuestro personal del punto de venta para que te asistan, o por nuestro canal de atención [chat web](https://starken.cl/hablemos)'
     },
     {
       id: 'prob-4',
@@ -203,7 +209,7 @@ const Faq = () => {
       id: 'pun-2',
       category: 'puntos-venta',
       question: '¿Cuáles son los horarios de atención de los puntos de venta?',
-      answer: 'Los horarios de atención de nuestros puntos de venta pueden variar. Consulta los horarios específicos de cada punto de venta en Buscador de Puntos de Venta.'
+      answer: 'Los horarios de atención de nuestros puntos de venta pueden variar. Consulta los horarios específicos de cada punto de venta en [Buscador de Puntos de Venta](https://starken.cl/sucursales).'
     },
     {
       id: 'pun-3',
@@ -241,25 +247,25 @@ const Faq = () => {
       id: 'rec-3',
       category: 'reclamos',
       question: '¿Cómo puedo contactar al servicio de atención al cliente si tengo otras preguntas?',
-      answer: 'Puedes contactar a nuestro servicio de atención al cliente a través de nuestro canal de atención de WhatsApp +569 61941240, por nuestras Redes Sociales o a través de nuestro Centro de atención telefónica 600 2000 710.'
+      answer: 'Puedes escribirnos a través del [Chat de nuestro sitio web](https://www.starken.cl/hablemos) o por nuestras redes sociales.'
     },
     {
       id: 'rec-4',
       category: 'reclamos',
       question: '¿Qué hago si mi envío pagado aparece como "Por Pagar"?',
-      answer: 'En caso que el pago no se vea refleja el cliente se debe contactar con nuestro equipo de atención a clientes vía WhatsApp +56961941240 para revisar el caso, te recomendamos tener a mano tu número de seguimiento y documentos relacionados al pago realizado.'
+      answer: 'En caso que el pago no se vea refleja el cliente se debe contactar al [Chat de nuestro sitio web](https://www.starken.cl/hablemos), te recomendamos tener a mano tu número de seguimiento y documentos relacionados al pago realizado.'
     },
     {
       id: 'rec-5',
       category: 'reclamos',
       question: '¿Cómo puedo realizar un reclamo?',
-      answer: 'Si necesitas realizar un reclamo, puedes hacerlo ingresando en nuestro Centro de Ayuda, ubicado en la barra superior de nuestro sitio web http://starken.cl o también ingresando al siguiente link, donde deberás completar el formulario con los datos solicitados.'
+      answer: 'Si necesitas realizar un reclamo, puedes hacerlo desde el Centro de Ayuda, disponible en la barra superior de [starken.cl](https://starken.cl), o directamente en nuestro [formulario de reclamos](https://starken.cl/form-reclamo), completando los datos solicitados.'
     },
     {
       id: 'rec-6',
       category: 'reclamos',
       question: '¿Cómo puedo revisar el estado de mi reclamo?',
-      answer: 'Para obtener información del estado de tu reclamo, puedes comunicarte con nosotros a través de nuestros canales de atención disponibles: WhatsApp +569 61941240 y Centro de atención telefónica 600 2000 710.'
+      answer: 'Para obtener información del estado de tu reclamo, puedes comunicarte con nosotros a través del [Chat de nuestro sitio web](https://www.starken.cl/hablemos).'
     },
     {
       id: 'rec-7',
@@ -273,19 +279,19 @@ const Faq = () => {
       id: 'seg-1',
       category: 'seguir-envio',
       question: '¿Qué pasa si mi envío no llega a su destino?',
-      answer: 'Si tu envío no llega a su destino dentro del plazo estimado, te pedimos que te contactes con nuestro servicio de atención al cliente por nuestro canal de WhatsApp con tu número de envío para que podamos investigar la situación y brindarte una solución.'
+      answer: 'Si tu envío no llega a su destino dentro del plazo estimado, te pedimos que te contactes con nuestro servicio de atención al cliente o por nuestro canal de atención [chat web](https://starken.cl/hablemos) con tu número de envío para que podamos investigar la situación y brindarte una solución.'
     },
     {
       id: 'seg-2',
       category: 'seguir-envio',
       question: '¿Qué significa cada estado de mi envío?',
-      answer: 'Los estados de tu envío pueden variar, pero algunos comunes incluyen "En tránsito" (el envío está en camino), "Pendiente de Entrega" (el envío ha llegado al punto de destino y está listo para ser retirado), "Entregado" (el envío ha sido entregado). Si tienes dudas sobre un estado específico, puedes contactar a nuestro servicio de atención al cliente o por nuestro canal de WhatsApp'
+      answer: 'Los estados de tu envío pueden variar, pero algunos comunes incluyen "En tránsito" (el envío está en camino), "Pendiente de Entrega" (el envío ha llegado al punto de destino y está listo para ser retirado), "Entregado" (el envío ha sido entregado). Si tienes dudas sobre un estado específico, puedes contactar a nuestro servicio de atención al cliente o por nuestro canal de atención [chat web](https://starken.cl/hablemos).'
     },
     {
       id: 'seg-3',
       category: 'seguir-envio',
       question: '¿Cómo puedo hacer un seguimiento del estado de mi envío?',
-      answer: 'Puedes hacer seguimiento del estado de tu envío ingresando el número de envío en la sección Seguir Envío de nuestro sitio web, o también en el siguiente link.'
+      answer: 'Puedes hacer seguimiento del estado de tu envío ingresando el número de envío en la sección Seguir Envío de nuestro sitio web, o también en el siguiente [link](https://starken.cl/seguimiento).'
     },
     {
       id: 'seg-4',
@@ -297,7 +303,7 @@ const Faq = () => {
       id: 'seg-5',
       category: 'seguir-envio',
       question: '¿Qué sucede si mi envío se retrasa?',
-      answer: 'Si tu envío experimenta un retraso, te notificaremos a través del correo electrónico que proporcionaste. Si tienes alguna duda o necesitas más información, puedes contactar a nuestro servicio de atención al cliente por nuestro canal de WhatsApp con tu número de envío a mano.'
+      answer: 'Si tu envío experimenta un retraso, te notificaremos a través del correo electrónico que proporcionaste. Si tienes alguna duda o necesitas más información, puedes contactar a nuestro servicio de atención al cliente por nuestro canal de atención [chat web](https://starken.cl/hablemos) con tu número de envío a mano.'
     }
   ];
 
@@ -378,6 +384,48 @@ const Faq = () => {
     }
   };
 
+  // Renderizar respuesta con soporte para enlaces en formato markdown [texto](url) y resaltado de búsqueda
+  const renderFormattedAnswer = (text, query) => {
+    if (!text) return null;
+
+    const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+    const elements = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = linkRegex.exec(text)) !== null) {
+      const matchIndex = match.index;
+      if (matchIndex > lastIndex) {
+        const textBefore = text.substring(lastIndex, matchIndex);
+        elements.push(highlightMatches(textBefore, query));
+      }
+
+      const label = match[1];
+      const url = match[2];
+      const isExternal = url.startsWith('http://') || url.startsWith('https://');
+
+      elements.push(
+        <a
+          key={`link-${matchIndex}`}
+          href={url}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+          className="faq-answer-link"
+        >
+          {highlightMatches(label, query)}
+        </a>
+      );
+
+      lastIndex = linkRegex.lastIndex;
+    }
+
+    if (lastIndex < text.length) {
+      elements.push(highlightMatches(text.substring(lastIndex), query));
+    }
+
+    return elements;
+  };
+
   // Filtrar preguntas según categoría activa y búsqueda
   const filteredFaqs = faqData.filter(faq => {
     const matchesCategory = faq.category === activeCategory;
@@ -388,20 +436,116 @@ const Faq = () => {
   // Categorías con coincidencias para sugerencias
   const categoriesWithMatches = categories.filter(cat => getCategoryMatchCount(cat.id) > 0);
 
-  // Manejar cambio de categoría y scroll en móvil
+  // Manejar cambio de categoría y scroll en móvil/tablet
   const handleCategoryClick = (categoryId, event) => {
+    // Si el usuario estaba arrastrando con el ratón horizontalmente, ignorar el clic
+    if (isDraggingActiveRef.current) {
+      return;
+    }
+
     setActiveCategory(categoryId);
     setOpenFaqId(null);
     
-    // Desplazar suavemente el badge seleccionado al centro en móvil
-    if (event?.currentTarget) {
-      event.currentTarget.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest',
-        inline: 'center'
-      });
+    // Desplazar suavemente la categoría seleccionada al centro en tablet/móvil
+    if (event?.currentTarget && sidebarRef.current) {
+      const card = event.currentTarget;
+      const sidebar = sidebarRef.current;
+      
+      if (sidebar.scrollWidth > sidebar.clientWidth) {
+        const cardLeft = card.offsetLeft;
+        const cardWidth = card.offsetWidth;
+        const sidebarWidth = sidebar.clientWidth;
+        const targetScroll = cardLeft - (sidebarWidth / 2) + (cardWidth / 2);
+        
+        sidebar.scrollTo({
+          left: Math.max(0, targetScroll),
+          behavior: 'smooth'
+        });
+      }
     }
   };
+
+  // Iniciar arrastre con clic sostenido (cuando hay desborde horizontal en tablet/móvil)
+  const handleMouseDown = (e) => {
+    if (e.button !== 0) return;
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return;
+
+    // Solo activar lógica de arrastre si hay scroll horizontal
+    if (sidebar.scrollWidth <= sidebar.clientWidth) return;
+
+    isDraggingRef.current = true;
+    isDraggingActiveRef.current = false;
+    startXRef.current = e.pageX;
+    startScrollLeftRef.current = sidebar.scrollLeft;
+  };
+
+  // Listeners globales para arrastrar suavemente con el ratón y rueda
+  useEffect(() => {
+    const handleGlobalMouseMove = (e) => {
+      if (!isDraggingRef.current) return;
+      const sidebar = sidebarRef.current;
+      if (!sidebar) return;
+
+      const deltaX = e.pageX - startXRef.current;
+      if (Math.abs(deltaX) > 4) {
+        if (!isDraggingActiveRef.current) {
+          isDraggingActiveRef.current = true;
+          document.body.classList.add('is-faq-dragging');
+          sidebar.classList.add('is-dragging');
+        }
+        sidebar.scrollLeft = startScrollLeftRef.current - deltaX;
+      }
+    };
+
+    const handleGlobalMouseUp = () => {
+      if (isDraggingRef.current) {
+        isDraggingRef.current = false;
+        document.body.classList.remove('is-faq-dragging');
+        const sidebar = sidebarRef.current;
+        if (sidebar) {
+          sidebar.classList.remove('is-dragging');
+        }
+        setTimeout(() => {
+          isDraggingActiveRef.current = false;
+        }, 100);
+      }
+    };
+
+    const handleGlobalDragStart = (e) => {
+      if (isDraggingRef.current) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('mousemove', handleGlobalMouseMove, { passive: true });
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+    window.addEventListener('dragstart', handleGlobalDragStart);
+
+    // Desplazamiento horizontal con la rueda del ratón al posarse sobre las categorías
+    const sidebar = sidebarRef.current;
+    const handleWheel = (e) => {
+      if (!sidebar) return;
+      if (sidebar.scrollWidth <= sidebar.clientWidth) return;
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && Math.abs(e.deltaY) > 2) {
+        e.preventDefault();
+        sidebar.scrollLeft += e.deltaY;
+      }
+    };
+
+    if (sidebar) {
+      sidebar.addEventListener('wheel', handleWheel, { passive: false });
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleGlobalMouseMove);
+      window.removeEventListener('mouseup', handleGlobalMouseUp);
+      window.removeEventListener('dragstart', handleGlobalDragStart);
+      if (sidebar) {
+        sidebar.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, []);
 
   return (
     <div className="condiciones-page">
@@ -450,8 +594,13 @@ const Faq = () => {
 
         {/* Sidebar and Questions Layout */}
         <div className="faq-content-layout">
-          {/* Left Column: Sidebar Categories */}
-          <aside className="faq-sidebar">
+          {/* Categories Sidebar */}
+          <aside 
+            ref={sidebarRef}
+            className="faq-sidebar"
+            onMouseDown={handleMouseDown}
+            onDragStart={(e) => e.preventDefault()}
+          >
             {categories.map((category) => {
               const IconComponent = category.icon;
               const totalCount = faqData.filter(faq => faq.category === category.id).length;
@@ -516,7 +665,7 @@ const Faq = () => {
                       >
                         <div className="faq-answer-content">
                           <p style={{ margin: 0, whiteSpace: 'pre-line' }}>
-                            {highlightMatches(faq.answer, searchQuery)}
+                            {renderFormattedAnswer(faq.answer, searchQuery)}
                           </p>
                         </div>
                       </div>
