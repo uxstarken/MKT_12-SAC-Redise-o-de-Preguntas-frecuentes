@@ -1152,11 +1152,22 @@ body.is-faq-dragging * {
 
   .faq-answer-content p,
   .faq-answer-content li,
-  .faq-answer-content span,
-  .faq-answer-content a {
+  .faq-answer-content span {
     font-size: 14px;
     line-height: 1.55;
     color: #374151;
+  }
+
+  .faq-answer-content a,
+  .faq-answer-link {
+    font-size: 14px;
+    line-height: 1.55;
+    color: #029E47;
+  }
+
+  .faq-answer-content a:hover,
+  .faq-answer-link:hover {
+    color: #016E31;
   }
 
   .faq-support-section {
