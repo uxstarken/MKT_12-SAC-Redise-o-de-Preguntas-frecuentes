@@ -1,17 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  Search, 
-  MapPin, 
-  ChevronDown, 
-  Plane, 
-  Sparkles, 
-  AlertTriangle, 
+import {
+  Search,
+  MapPin,
+  ChevronDown,
+  Plane,
+  Sparkles,
+  AlertTriangle,
   AlertCircle,
   Globe,
-  HelpCircle, 
-  X, 
-  FileText, 
-  Boxes, 
+  HelpCircle,
+  X,
+  FileText,
+  Boxes,
   ChevronRight,
   ArrowRight
 } from 'lucide-react';
@@ -71,7 +71,7 @@ const Faq = () => {
       id: 'web-5',
       category: 'envios-web',
       question: '¿Qué debo hacer si cometí un error al crear mi envío online?',
-      answer: 'Si cometiste un error al crear tu envío online y fue pagado, te recomendamos contactar a nuestro servicio de atención al cliente lo antes posible para realizar la cancelación y generar el proceso de devolución de dinero. En caso de contrario, puedes crear un nuevo envío sin problemas.'
+      answer: 'Si cometiste un error al crear tu envío online y fue pagado, te recomendamos contactar a nuestro [Servicio de atención al cliente](https://www.starken.cl/hablemos) lo antes posible para realizar la cancelación y generar el proceso de devolución de dinero. En caso de contrario, puedes crear un nuevo envío sin problemas.'
     },
     {
       id: 'web-6',
@@ -95,7 +95,7 @@ const Faq = () => {
       id: 'web-9',
       category: 'envios-web',
       question: '¿Cómo creo un envío online?',
-      answer: 'Para crear un envío online, debes ingresar a nuestra sección de "Crear Envío" en nuestro sitio web. Allí, deberás completar con la información de entrega, las características del envío (peso, dimensiones, etc.) y seleccionar el punto de venta donde dejarás el envío.'
+      answer: 'Para crear un envío online, debes ingresar a nuestra sección de [Crear Envío](https://starken.cl/preemision) en nuestro sitio web. Allí, deberás completar con la información de entrega, las características del envío (peso, dimensiones, etc.) y seleccionar el punto de venta donde dejarás el envío.'
     },
     {
       id: 'web-10',
@@ -115,7 +115,7 @@ const Faq = () => {
       id: 'gen-2',
       category: 'preguntas-generales',
       question: '¿Hay algún horario específico para entregar los envíos en los puntos de venta?',
-      answer: 'Los horarios de atención de nuestros puntos de venta pueden variar. Te recomendamos consultar el horario en Sucursales, recuerda que los envíos recibidos posterior a las 17:00 hrs sumarán un día hábil de transito.'
+      answer: 'Los horarios de atención de nuestros puntos de venta pueden variar. Te recomendamos consultar el horario en [Sucursales](https://starken.cl/sucursales), recuerda que los envíos recibidos posterior a las 17:00 hrs sumarán un día hábil de transito.'
     },
     {
       id: 'gen-3',
@@ -127,7 +127,7 @@ const Faq = () => {
       id: 'gen-4',
       category: 'preguntas-generales',
       question: '¿Qué debo hacer si mi número de envío no funciona?',
-      answer: 'Si tu número de envío no funciona, por favor, verifica que lo hayas ingresado correctamente. Si el problema persiste, contacta a nuestro servicio de atención al cliente para que podamos ayudarte.'
+      answer: 'Si tu número de envío no funciona, por favor, verifica que lo hayas ingresado correctamente. Si el problema persiste, contacta a nuestro [Servicio de atención al cliente](https://www.starken.cl/hablemos) para que podamos ayudarte.'
     },
     {
       id: 'gen-5',
@@ -151,7 +151,7 @@ const Faq = () => {
       id: 'gen-8',
       category: 'preguntas-generales',
       question: '¿Cuál es su política de privacidad con respecto a mis datos y la información de mis envíos?',
-      answer: 'En Starken, nos tomamos muy en serio la privacidad de tus datos. Puedes consultar nuestra política de privacidad completa en Política de Privacidad y uso de datos personales para obtener información detallada sobre cómo recopilamos, utilizamos y protegemos tu información.'
+      answer: 'En Starken, nos tomamos muy en serio la privacidad de tus datos. Puedes consultar nuestra política de privacidad completa en [Política de Privacidad y uso de datos personales](https://starken.cl/privacidad-y-datos) para obtener información detallada sobre cómo recopilamos, utilizamos y protegemos tu información.'
     },
     {
       id: 'gen-9',
@@ -163,7 +163,7 @@ const Faq = () => {
       id: 'gen-10',
       category: 'preguntas-generales',
       question: '¿Qué tipo de productos puedo enviar a través del servicio online?',
-      answer: 'Puedes enviar una amplia variedad de productos a través de nuestro servicio online, siempre y cuando cumplan con nuestras políticas de envío y la legislación vigente. Te recomendamos revisar la lista de artículos prohibidos en Carga prohibida.'
+      answer: 'Puedes enviar una amplia variedad de productos a través de nuestro servicio online, siempre y cuando cumplan con nuestras políticas de envío y la legislación vigente. Te recomendamos revisar la lista de artículos prohibidos en [Carga prohibida](https://starken.cl/carga-prohibida).'
     },
     {
       id: 'gen-11',
@@ -177,7 +177,7 @@ const Faq = () => {
       id: 'prob-1',
       category: 'problemas-envio',
       question: '¿Qué sucede si mi envío tiene varios bultos y no llegan todos juntos?',
-      answer: 'En caso de que tengas un envío con más de un bulto, se te avisará por correo electrónico cuando todos los bultos estén disponibles para retiro. Si falta alguno, por favor, contacta a nuestro servicio de atención al cliente con tu número de envío.'
+      answer: 'En caso de que tengas un envío con más de un bulto, se te avisará por correo electrónico cuando todos los bultos estén disponibles para retiro. Si falta alguno, por favor, contacta a nuestro [Servicio de atención al cliente](https://www.starken.cl/hablemos) con tu número de envío.'
     },
     {
       id: 'prob-2',
@@ -189,13 +189,13 @@ const Faq = () => {
       id: 'prob-3',
       category: 'problemas-envio',
       question: '¿Qué hago si tengo problemas al entregar mi envío en un punto de venta?',
-      answer: 'Al momento de recibir la carga, si existiera alguna incidencia te recomendamos contactar a nuestro personal del punto de venta para que te asistan, o por nuestro canal de atención [chat web](https://starken.cl/hablemos)'
+      answer: 'Al momento de recibir la carga, si existiera alguna incidencia te recomendamos contactar a nuestro personal del punto de venta para que te asistan, o por nuestro canal de [Servicio de atención al cliente](https://www.starken.cl/hablemos).'
     },
     {
       id: 'prob-4',
       category: 'problemas-envio',
       question: '¿Qué debo hacer si no recibo la notificación de que mi carga está disponible para retiro?',
-      answer: 'Si no recibes la notificación de que tu envío está disponible para retiro (Pendiente de Entrega) dentro del plazo esperado, te recomendamos verificar la carpeta de spam o correo no deseado de tu correo electrónico. Si aún no la encuentras, puedes contactar a nuestro servicio de atención al cliente con tu número de envío para que podamos verificar el estado y fecha de entrega.'
+      answer: 'Si no recibes la notificación de que tu envío está disponible para retiro (Pendiente de Entrega) dentro del plazo esperado, te recomendamos verificar la carpeta de spam o correo no deseado de tu correo electrónico. Si aún no la encuentras, puedes contactar a nuestro [Servicio de atención al cliente](https://www.starken.cl/hablemos) con tu número de envío para que podamos verificar el estado y fecha de entrega.'
     },
 
     // 4. Puntos de Venta (5 preguntas exactas)
@@ -215,7 +215,7 @@ const Faq = () => {
       id: 'pun-3',
       category: 'puntos-venta',
       question: '¿Dónde puedo encontrar los puntos de venta para dejar mi envío?',
-      answer: 'Puedes encontrar el listado de todos nuestros puntos de venta disponibles en nuestro Buscador de Puntos de Venta.'
+      answer: 'Puedes encontrar el listado de todos nuestros puntos de venta disponibles en nuestro [Buscador de Puntos de Venta](https://starken.cl/sucursales).'
     },
     {
       id: 'pun-4',
@@ -227,7 +227,7 @@ const Faq = () => {
       id: 'pun-5',
       category: 'puntos-venta',
       question: '¿Qué sucede si mi envío excede las medidas permitidas al llegar al punto de venta?',
-      answer: 'En caso de que tu envío exceda las medidas permitidas, el punto de venta no podrá recibirlo. Deberás dirigirte a un punto de venta habilitado para recibir cargas de mayor tamaño, puedes revisar el detalle de cada punto en Buscador de Puntos de Venta'
+      answer: 'En caso de que tu envío exceda las medidas permitidas, el punto de venta no podrá recibirlo. Deberás dirigirte a un punto de venta habilitado para recibir cargas de mayor tamaño, puedes revisar el detalle de cada punto en [Buscador de Puntos de Venta](https://starken.cl/sucursales).'
     },
 
     // 5. Reclamos (7 preguntas exactas)
@@ -259,7 +259,7 @@ const Faq = () => {
       id: 'rec-5',
       category: 'reclamos',
       question: '¿Cómo puedo realizar un reclamo?',
-      answer: 'Si necesitas realizar un reclamo, puedes hacerlo desde el Centro de Ayuda, disponible en la barra superior de [starken.cl](https://starken.cl), o directamente en nuestro [formulario de reclamos](https://starken.cl/form-reclamo), completando los datos solicitados.'
+      answer: 'Si necesitas realizar un reclamo, puedes hacerlo desde el [Centro de Ayuda](https://starken.cl/centro-ayuda), disponible en la barra superior de [starken.cl](https://starken.cl), o directamente en nuestro [formulario de reclamos](https://starken.cl/form-reclamo), completando los datos solicitados.'
     },
     {
       id: 'rec-6',
@@ -291,7 +291,7 @@ const Faq = () => {
       id: 'seg-3',
       category: 'seguir-envio',
       question: '¿Cómo puedo hacer un seguimiento del estado de mi envío?',
-      answer: 'Puedes hacer seguimiento del estado de tu envío ingresando el número de envío en la sección Seguir Envío de nuestro sitio web, o también en el siguiente [link](https://starken.cl/seguimiento).'
+      answer: 'Puedes hacer seguimiento del estado de tu envío ingresando el número de envío en la sección [Seguir Envío](https://starken.cl/seguimiento) de nuestro sitio web.'
     },
     {
       id: 'seg-4',
@@ -308,7 +308,7 @@ const Faq = () => {
   ];
 
   // Normalizar texto para búsqueda insensible a acentos y mayúsculas
-  const normalizeText = (text) => 
+  const normalizeText = (text) =>
     text ? text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') : '';
 
   // Comprobar si una pregunta o respuesta coincide con la búsqueda
@@ -338,7 +338,7 @@ const Faq = () => {
   // Resaltar coincidencias en negrita
   const highlightMatches = (text, query) => {
     if (!text || !query || !query.trim()) return text;
-    
+
     const cleanQuery = query.trim();
     const words = cleanQuery.split(/\s+/).filter(Boolean);
     if (words.length === 0) return text;
@@ -368,7 +368,7 @@ const Faq = () => {
       const splitRegex = new RegExp(`(${wordPatterns.join('|')})`, 'gi');
       const matchRegex = new RegExp(`^(${wordPatterns.join('|')})$`, 'i');
       const parts = text.split(splitRegex);
-      
+
       return parts.map((part, index) => {
         if (matchRegex.test(part)) {
           return (
@@ -445,18 +445,18 @@ const Faq = () => {
 
     setActiveCategory(categoryId);
     setOpenFaqId(null);
-    
+
     // Desplazar suavemente la categoría seleccionada al centro en tablet/móvil
     if (event?.currentTarget && sidebarRef.current) {
       const card = event.currentTarget;
       const sidebar = sidebarRef.current;
-      
+
       if (sidebar.scrollWidth > sidebar.clientWidth) {
         const cardLeft = card.offsetLeft;
         const cardWidth = card.offsetWidth;
         const sidebarWidth = sidebar.clientWidth;
         const targetScroll = cardLeft - (sidebarWidth / 2) + (cardWidth / 2);
-        
+
         sidebar.scrollTo({
           left: Math.max(0, targetScroll),
           behavior: 'smooth'
@@ -559,7 +559,7 @@ const Faq = () => {
 
       {/* Main Content Area in 1200px max-width container */}
       <div className="condiciones-main-container" style={{ paddingBottom: '120px', paddingTop: '16px' }}>
-        
+
         {/* Intro Section and Search input */}
         <div className="faq-page-intro">
           <h2 className="faq-page-main-title">
@@ -568,25 +568,24 @@ const Faq = () => {
           <p className="condiciones-intro-subtitle">
             Puedes buscar en la categoría que más se acerque a tu consulta.
           </p>
-          
+
           {/* Search Bar */}
-          <div className="faq-search-container" style={{ width: '100%', maxWidth: '600px', margin: '0 auto', position: 'relative' }}>
-            <input 
-              type="text" 
-              placeholder="Buscar por palabra clave como por ejemplo: envío" 
+          <div className="faq-search-container">
+            <input
+              type="text"
+              placeholder="Buscar por palabra clave como por ejemplo: envío"
               className="faq-search-input"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <Search className="faq-search-icon" size={22} style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', color: '#9ca3af' }} />
+            <Search className="faq-search-icon" size={18} />
             {searchQuery && (
-              <button 
-                className="faq-search-clear" 
+              <button
+                className="faq-search-clear"
                 onClick={() => setSearchQuery('')}
                 aria-label="Limpiar búsqueda"
-                style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: '#9ca3af', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                <X size={18} />
+                <X size={16} />
               </button>
             )}
           </div>
@@ -595,7 +594,7 @@ const Faq = () => {
         {/* Sidebar and Questions Layout */}
         <div className="faq-content-layout">
           {/* Categories Sidebar */}
-          <aside 
+          <aside
             ref={sidebarRef}
             className="faq-sidebar"
             onMouseDown={handleMouseDown}
@@ -609,8 +608,8 @@ const Faq = () => {
               const noMatches = hasSearch && matchCount === 0;
 
               return (
-                <div 
-                  key={category.id} 
+                <div
+                  key={category.id}
                   className={`faq-category-card ${activeCategory === category.id ? 'active' : ''} ${hasMatches ? 'has-matches' : ''} ${noMatches ? 'no-matches' : ''}`}
                   onClick={(e) => handleCategoryClick(category.id, e)}
                   title={hasMatches ? `${matchCount} coincidencias encontradas` : undefined}
@@ -646,11 +645,11 @@ const Faq = () => {
                   const isOpen = openFaqId === faq.id;
 
                   return (
-                    <div 
-                      key={faq.id} 
+                    <div
+                      key={faq.id}
                       className={`faq-item ${isOpen ? 'open' : ''}`}
                     >
-                      <button 
+                      <button
                         className="faq-question-btn"
                         onClick={() => setOpenFaqId(isOpen ? null : faq.id)}
                         aria-expanded={isOpen}
@@ -658,8 +657,8 @@ const Faq = () => {
                         <span>{highlightMatches(faq.question, searchQuery)}</span>
                         <ChevronDown className="faq-chevron" size={20} />
                       </button>
-                      
-                      <div 
+
+                      <div
                         className="faq-answer-container"
                         style={{ maxHeight: isOpen ? '1000px' : '0' }}
                       >
@@ -677,7 +676,7 @@ const Faq = () => {
               <div className="faq-empty-state">
                 <HelpCircle className="faq-empty-icon" size={48} />
                 <h4 className="faq-empty-title">
-                  {hasSearch 
+                  {hasSearch
                     ? `No hay coincidencias en "${categories.find(c => c.id === activeCategory)?.name}"`
                     : 'No encontramos resultados para tu búsqueda'}
                 </h4>
@@ -788,10 +787,10 @@ const Faq = () => {
               </p>
             </div>
             <div className="faq-support-action">
-              <a 
-                href="https://www.starken.cl/hablemos" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://www.starken.cl/hablemos"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="faq-support-btn"
               >
                 <span>Contactar</span>

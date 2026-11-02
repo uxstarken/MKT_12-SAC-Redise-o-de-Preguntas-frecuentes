@@ -97,7 +97,7 @@
 .faq-search-container {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 480px;
   margin: 0 auto;
   z-index: 10;
   display: flex;
@@ -106,34 +106,35 @@
 
 .faq-search-input {
   width: 100%;
-  padding: 16px 20px 16px 54px;
-  font-size: 1.05rem;
-  border: 1px solid var(--starken-border);
-  border-radius: 30px;
+  padding: 12px 40px 12px 44px;
+  font-size: 16px;
+  font-family: var(--font-body, 'Nunito', sans-serif);
+  border: 1.5px solid var(--starken-border, #E2E8F0);
+  border-radius: var(--radius-pill, 9999px);
   background: var(--starken-white, #ffffff);
-  color: #374151;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: var(--starken-text-dark, #1E293B);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
   transition: all 0.3s ease;
   outline: none;
-  font-family: inherit;
 }
 
 .faq-search-input::placeholder {
-  color: #9ca3af;
-  font-size: inherit;
+  color: #94A3B8;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .faq-search-input:focus {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(255, 255, 255, 0.35);
-  transform: translateY(-2px);
+  border-color: #029E47;
+  box-shadow: 0 0 0 4px rgba(2, 158, 71, 0.1);
 }
 
 .faq-search-icon {
   position: absolute;
-  left: 20px;
+  left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: #94A3B8;
   pointer-events: none;
   transition: color 0.3s ease;
 }
@@ -144,12 +145,12 @@
 
 .faq-search-clear {
   position: absolute;
-  right: 20px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #9ca3af;
+  color: #94A3B8;
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
@@ -998,7 +999,7 @@ body.is-faq-dragging * {
 @media (max-width: 768px) {
   .faq-search-input {
     font-size: 14px;
-    padding: 13px 18px 13px 46px;
+    padding: 12px 38px 12px 42px;
   }
 
   .faq-search-input::placeholder {
