@@ -85,7 +85,7 @@
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   line-height: 1.4;
-  color: #374151;
+  color: #505050;
   margin: 0 auto 20px auto;
   font-weight: 500;
   text-align: center;
@@ -162,7 +162,7 @@
 
 .faq-search-clear:hover {
   background: #f3f4f6;
-  color: #374151;
+  color: #505050;
 }
 
 /* Sidebar Layout for FAQ */
@@ -247,19 +247,19 @@
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
   font-weight: 600;
-  color: #374151;
+  color: #505050;
   transition: color 0.2s ease;
 }
 
 .faq-category-card.active .faq-category-name {
-  color: #374151;
+  color: #505050;
   font-weight: 700;
 }
 
 .faq-category-count {
   font-family: 'Nunito', sans-serif;
   font-size: 0.75rem;
-  color: #374151;
+  color: #505050;
   background: #f1f5f9;
   padding: 3px 8px;
   border-radius: 10px;
@@ -401,7 +401,7 @@
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: #374151;
+  color: #505050;
   transition: all 0.2s ease;
 }
 
@@ -445,7 +445,7 @@
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #374151;
+  color: #505050;
 }
 
 .faq-answer-content p,
@@ -453,7 +453,7 @@
 .faq-answer-content span {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
-  color: #374151;
+  color: #505050;
 }
 
 .faq-answer-content a,
@@ -493,7 +493,7 @@
 .faq-empty-state {
   text-align: center;
   padding: 40px 20px;
-  color: #374151;
+  color: #505050;
 }
 
 .faq-empty-icon {
@@ -510,7 +510,7 @@
 
 .faq-empty-desc {
   font-size: 0.95rem;
-  color: #374151;
+  color: #505050;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -756,7 +756,7 @@
 .faq-shortcut-desc {
   font-family: 'Nunito', sans-serif;
   font-size: 16px;
-  color: #374151;
+  color: #505050;
   margin: 0 0 16px 0;
   line-height: 1.45;
   flex-grow: 1;
@@ -939,20 +939,20 @@ body.is-faq-dragging * {
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    color: #374151;
+    color: #505050;
     white-space: nowrap;
     transition: color 0.2s ease;
   }
 
   .faq-category-card.active .faq-category-name {
-    color: #374151;
+    color: #505050;
     font-weight: 700;
   }
 
   .faq-category-count {
     font-family: 'Nunito', sans-serif;
     font-size: 0.72rem;
-    color: #374151;
+    color: #505050;
     background: #f1f5f9;
     padding: 2px 7px;
     border-radius: 8px;
@@ -1086,7 +1086,7 @@ body.is-faq-dragging * {
   .faq-shortcut-desc {
     font-family: 'Nunito', sans-serif;
     font-size: 13px;
-    color: #374151;
+    color: #505050;
     margin: 0;
     line-height: 1.25;
     text-align: left;
@@ -1155,7 +1155,7 @@ body.is-faq-dragging * {
   .faq-answer-content span {
     font-size: 14px;
     line-height: 1.55;
-    color: #374151;
+    color: #505050;
   }
 
   .faq-answer-content a,
